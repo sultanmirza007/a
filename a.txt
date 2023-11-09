@@ -1,0 +1,353 @@
+1.//Get the current date and time
+
+      <html>
+<body>
+
+<p id="demo"></p>
+
+<script>
+// Displaying current date and time
+var currentDateTime = new Date();
+document.getElementById("demo").innerHTML = "Current Date and Time: " + currentDateTime;
+
+// Extracting the date in string format
+var currentDate = currentDateTime.toDateString();
+document.getElementById("demo").innerHTML += "<br>Current Date: " + currentDate;
+</script>
+
+</body>
+</html>
+
+
+
+
+
+const currentDate = new Date();
+
+// Display the current date and time
+console.log("Current Date and Time:", currentDate);
+
+// Extract the date in string format (YYYY-MM-DD)
+const dateString = currentDate.toISOString().split('T')[0];
+
+// Display only the extracted date
+console.log("Extracted Date:", dateString);
+
+
+2./ Input date string in the format "23 Jan 2019"
+const inputDateString = "23 Jan 2019";
+
+
+
+                    <!DOCTYPE html>
+<html>
+<body>
+
+<p id="originalDate"></p>
+<p id="formattedDate"></p>
+
+<script>
+// Creating a Date object with the date 23 Jan 2019
+var originalDate = new Date('January 23, 2019 00:00:00');
+document.getElementById("originalDate").innerHTML = "Original Date: " + originalDate.toDateString();
+
+// Formatting the date as 23/01/2019
+var formattedDate = originalDate.getDate() + '/' + (originalDate.getMonth() + 1) + '/' + originalDate.getFullYear();
+document.getElementById("formattedDate").innerHTML = "Formatted Date: " + formattedDate;
+</script>
+
+</body>
+</html>
+
+// Convert input date string to a Date object
+const inputDate = new Date(inputDateString);
+
+// Format the date as "dd/mm/yyyy"
+const formattedDate = `${inputDate.getDate()}/${(inputDate.getMonth() + 1).toString().padStart(2, '0')}/${inputDate.getFullYear()}`;
+
+3.// Display the formatted date
+console.log(formattedDate);
+<!DOCTYPE html>
+<html>
+<head>
+    <title>System Clock</title>
+    <script>
+        function updateClock() {
+            const now = new Date();
+            const hours = now.getHours().toString().padStart(2, '0');
+            const minutes = now.getMinutes().toString().padStart(2, '0');
+            const seconds = now.getSeconds().toString().padStart(2, '0');
+            
+            const currentTime = `${hours}:${minutes}:${seconds}`;
+            document.getElementById("clock").textContent = currentTime;
+        }
+        
+        // Update the clock every second
+        setInterval(updateClock, 1000);
+    </script>
+</head>
+<body>
+    <h1>System Clock</h1>
+    <div id="clock"></div>
+</body>
+</html>
+
+
+
+4.<!DOCTYPE html>
+<html>
+<head>
+    <title>Date and Time Display</title>
+    <script>
+        function getFormattedDay(dayIndex) {
+            const daysOfWeek = ["SUNDAY", "MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY"];
+            return daysOfWeek[dayIndex];
+        }
+
+        function updateDateTime() {
+            const now = new Date();
+            
+            const dayIndex = now.getDay();
+            const formattedDay = getFormattedDay(dayIndex);
+            document.getElementById("dayOfWeek").textContent = `Today is ${formattedDay}!!!`;
+            
+            const hours = now.getHours();
+            const minutes = now.getMinutes().toString().padStart(2, '0');
+            const seconds = now.getSeconds().toString().padStart(2, '0');
+            
+            const formattedTime = `${hours}:${minutes}:${seconds}`;
+            document.getElementById("time").textContent = `Time: ${formattedTime}`;
+        }
+
+        // Update the date and time every second
+        setInterval(updateDateTime, 1000);
+    </script>
+</head>
+<body>
+    <h1>Date and Time Display</h1>
+    <div id="dayOfWeek"></div>
+    <div id="time"></div>
+</body>
+</html>
+
+
+***Create a JSP page that will display the factorial of a number. The input should be from the user
+ChatGPT
+
+
+
+
+
+
+Here's an example of a JSP page that calculates and displays the factorial of a number entered by the user:
+
+factorial.jsp:
+
+jsp
+Copy code
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Factorial Calculator</title>
+</head>
+<body>
+    <form action="factorialResult.jsp" method="post">
+        Enter a number: <input type="number" name="number" required><br><br>
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>
+factorialResult.jsp:
+
+jsp
+Copy code
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="java.io., java.util." %>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Factorial Result</title>
+</head>
+<body>
+    <%
+        int number = Integer.parseInt(request.getParameter("number"));
+        long factorial = 1;
+        for (int i = 2; i <= number; i++) {
+            factorial *= i;
+        }
+    %>
+    <h2>Factorial of <%= number %> is: <%= factorial %></h2>
+</body>
+</html>
+
+
+2.Here's an example of an HTML form with client-side JavaScript validation for the password length, and a JSP code snippet for validating the username and password on form submission:
+
+HTML form (index.html):
+
+html
+Copy code
+<!DOCTYPE html>
+<html>
+<body>
+    <form name="myForm" action="validation.jsp" onsubmit="return validateForm()" method="post">
+        Username: <input type="text" name="username" required><br><br>
+        Password: <input type="password" name="password" required><br><br>
+        <input type="submit" value="Submit">
+    </form>
+
+    <script>
+        function validateForm() {
+            var password = document.forms["myForm"]["password"].value;
+            if (password.length < 3 || password.length > 8) {
+                alert("Password must be between 3 and 8 characters");
+                return false;
+            }
+            return true;
+        }
+    </script>
+</body>
+</html>
+JSP validation (validation.jsp):
+
+jsp
+Copy code
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<body>
+    <% 
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
+        if (password.length() >= 3 && password.length() <= 8) {
+            out.println("Validation successful<br>");
+            out.println("Username: " + username + "<br>");
+            out.println("Password: " + password + "<br>");
+        } else {
+            out.println("Password must be between 3 and 8 characters<br>");
+        }
+    %>
+</body>
+</html>
+
+3.1. Develop a small web application that works as a telephone directory. Retrieve the phone
+numbers from a database using JSP and JDBC.
+
+
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Telephone Directory</title>
+</head>
+<body>
+    <h2>Telephone Directory</h2>
+    <table border="1">
+        <tr>
+            <th>Name</th>
+            <th>Phone Number</th>
+        </tr>
+        <% 
+            try {
+                Class.forName("your_jdbc_driver");
+                Connection con = DriverManager.getConnection("your_database_url", "username", "password");
+                Statement stmt = con.createStatement();
+                ResultSet rs = stmt.executeQuery("SELECT * FROM telephone_directory");
+
+                while (rs.next()) {
+                    String name = rs.getString("name");
+                    String phoneNumber = rs.getString("phone_number");
+        %>
+        <tr>
+            <td><%= name %></td>
+            <td><%= phoneNumber %></td>
+        </tr>
+        <%
+                }
+                con.close();
+            } catch (Exception e) {
+                out.println("Error: " + e);
+            }
+        %>
+    </table>
+</body>
+</html>
+  
+
+6 Using Servlet create a Session object and set the current date as a attribute of that object.
+On each and every request show the current date and previous current date.
+
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.Date;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+@WebServlet("/DateServlet")
+public class DateServlet extends HttpServlet {
+    private static final long serialVersionUID = 1L;
+
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        response.setContentType("text/html");
+        PrintWriter out = response.getWriter();
+        HttpSession session = request.getSession();
+
+        Date currentDate = new Date();
+        Date previousDate = (Date) session.getAttribute("previousDate");
+
+        if (previousDate != null) {
+            out.println("Previous Current Date: " + previousDate + "<br>");
+        }
+
+        session.setAttribute("previousDate", currentDate);
+        out.println("Current Date: " + currentDate);
+    }
+}
+
+b.Create a cookie using Servlet to store and display login information like username and
+password as entered by the user.
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+@WebServlet("/LoginServlet")
+public class LoginServlet extends HttpServlet {
+    private static final long serialVersionUID = 1L;
+
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        response.setContentType("text/html");
+        PrintWriter out = response.getWriter();
+
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
+
+        Cookie usernameCookie = new Cookie("username", username);
+        Cookie passwordCookie = new Cookie("password", password);
+
+        response.addCookie(usernameCookie);
+        response.addCookie(passwordCookie);
+
+        out.println("<html><body>");
+        out.println("<h2>Login Information Stored as Cookies:</h2>");
+        out.println("Username: " + username + "<br>");
+        out.println("Password: " + password + "<br>");
+        out.println("</body></html>");
+    }
+}
+}
